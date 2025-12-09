@@ -1,0 +1,30 @@
+<configuration>
+    <!--  控制台輸出  -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!-- 格式化輸出：%d 表示日期，%thread 表示執行緒名稱，%-5level 表示級別從左顯示 5 個字元寬度，%logger 顯示日誌紀錄器的名稱，%msg 表示日誌訊息，%n 表示換行符  -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %magenta([%thread]) %-5level %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--  系統日誌檔案輸出  -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--  日誌檔案輸出的檔案名稱，%i 表示序號  -->
+            <FileNamePattern>D:/tlias-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+            <!--  最多保留的歷史日誌檔案數量  -->
+            <MaxHistory>30</MaxHistory>
+            <!--  最大檔案大小，超過這個大小會觸發滾動到新檔案，預設為 10MB  -->
+            <maxFileSize>10MB</maxFileSize>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!-- 格式化輸出：%d 表示日期，%thread 表示執行緒名稱，%-5level 表示級別從左顯示 5 個字元寬度，%msg 表示日誌訊息，%n 表示換行符  -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50}-%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--  日誌輸出級別  -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myproject.mapper.AttdRecordMapper">
+    <!--    使用方法 id=list，回傳型態為單個封裝物件 = AttdRecord的限定類別名 -->
+    <select id="list" resultType="com.myproject.pojo.AttdRecord">
+        select *
+        from attendance_record
+        <where>
+            <if test="empId != null">
+                emp_id = #{empId}
+            </if>
+            <if test="begin != null and end != null">
+                and work_date between #{begin} and #{end}
+            </if>
+        </where>
+        order by work_date desc
+    </select>
+
+    <!--    根據員工id批量刪除記錄-->
+    <delete id="deleteByEmpIds">
+        delete from attendance_record
+        where emp_id in
+        <foreach collection="empIdList" item="empId" open="(" close=")" separator=",">
+            #{empId}
+        </foreach>
+    </delete>
+
+<!--    根據出勤紀錄id刪除紀錄-->
+    <delete id="deleteByIds">
+        delete from attendance_record
+        where id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

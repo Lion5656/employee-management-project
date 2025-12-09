@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myproject.mapper.OperateLogMapper">
+    <!--    使用方法 id=list，回傳型態為單個封裝物件 = OperateLog的限定類別名 -->
+    <select id="list" resultType="com.myproject.pojo.OperateLog">
+        select
+            l.*,
+            a.account operateAccount
+        from operate_log l, admin a
+        <where>
+            <if test="methodName != null and methodName != ''">
+                method_name like concat('%', #{methodName}, '%')
+            </if>
+            and l.operate_id = a.id
+        </where>
+        order by operate_time desc
+    </select>
+
+</mapper>
