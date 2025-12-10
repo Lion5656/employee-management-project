@@ -5,6 +5,7 @@ import com.myproject.utils.JwtUtils;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -19,7 +20,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 
     // 在Controller請求處理前進行攔截
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, @NonNull Object handler) throws Exception {
         // 獲取請求Header中的token
         String token = request.getHeader("token");
 
@@ -49,7 +50,6 @@ public class TokenInterceptor implements HandlerInterceptor {
         log.info("token驗證成功，放行");
         return true;
     }
-
     // 在Controller返回回應後進行攔截
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
