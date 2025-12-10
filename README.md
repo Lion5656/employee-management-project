@@ -35,21 +35,3 @@ Follow these steps to build and run the application:
     ./mvnw clean package -DskipTests
     ```
     *(For Windows CMD, use `mvnw clean package -DskipTests`)*
-
-3.  **Run the application**
-    Navigate to the main module's target directory and execute the jar file:
-    ```bash
-    java -jar emp-management-parent/employee-management/target/employee-management-1.0-SNAPSHOT.jar
-    ```
-    *(Note: Replace `1.0-SNAPSHOT` with your actual version if different)*
-
-For more details on API endpoints, please refer to the controller source code or API documentation (if available).
-
-## Useful Resources
-
-Include here any other links that are relevant for the project:
-
--   [Spring Boot Documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
--   [Project Lombok](https://projectlombok.org/) - Reduces boilerplate code.
--   [MyBatis Framework](https://mybatis.org/mybatis-3/) - SQL mapping framework.
--   [JWT.io](https://jwt.io/) - Introduction to JSON Web Tokens.
